@@ -1,19 +1,20 @@
-orbs:
-aws-ecr: circleci/aws-ecr@6.1.0
-aws-ecs: circleci/aws-ecs@0.0.8
 version: 2.1
+orbs:
+ aws-ecr: circleci/aws-ecr@6.1.0
+ aws-ecs: circleci/aws-ecs@0.0.8
 workflows:
-build_and_push_image:
-jobs:
-- aws-ecr/build-and-push-image:
-region: AWS_REGION
-account-url: AWS_ECR_ACCOUNT_URL
-repo: 'circleci'
-tag: "${CIRCLE_SHA1}"
-- aws-ecs/deploy-service-update:
-requires:
-- aws-ecr/build-and-push-image
-family: 'circleci-task'　
-cluster-name: 'circleci-container'　
-service-name: 'circleci-survice'　
-container-image-name-updates: 'container=seeds-test,tag=${CIRCLE_SHA1}'　
+ build_and_push_image:
+  jobs:
+   - aws-ecr/build-and-push-image:
+   region: AWS_REGION
+   account-url: AWS_ECR_ACCOUNT_URL
+   repo: 'circleci'
+   tag: "${CIRCLE_SHA1}"
+   
+   - aws-ecs/deploy-service-update:
+   requires:
+   - aws-ecr/build-and-push-image
+   family: 'circleci-task'　
+   cluster-name: 'circleci-container'　
+   service-name: 'circleci-survice'　
+   container-image-name-updates: 'container=seeds-test,tag=${CIRCLE_SHA1}'　
