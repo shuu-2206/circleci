@@ -18,6 +18,6 @@ workflows:
             - aws-ecr/build_and_push_image
           family: '${AWS_RESOURCE_NAME_PREFIX}-task'
           cluster-name: '${AWS_RESOURCE_NAME_PREFIX}-cluster'
-          service-name: '${AWS_RESOURCE_NAME_PREFIX}-survice'
+          service-name: '${AWS_RESOURCE_NAME_PREFIX}-service'
           container-image-name-updates: 'container=${AWS_RESOURCE_NAME_PREFIX}-container, tag=${CIRCLE_SHA1}'
 
