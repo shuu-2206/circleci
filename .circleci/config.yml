@@ -20,5 +20,5 @@ workflows:
           family: circleci-task
           cluster-name: circleci-cluster
           service-name: circleci-survice
-          container-image-name-updates: container=circleci-conainer, tag=latesttttttttt
+          container-image-name-updates: container=circleci-container, tag=latesttttttttt
 
