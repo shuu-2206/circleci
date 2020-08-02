@@ -9,7 +9,7 @@ workflows:
           context: ecr-circleci-context
           account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
           repo: "${AWS_RESOURCE_NAME_PREFIX}"
-          region: ${AWS_DEFAULT_REGION}
+          region: ${AWS_REGION}
           tag: "${CIRCLE_SHA1}"
       - aws-ecs/deploy-service-update:
           context: ecr-circleci-context
