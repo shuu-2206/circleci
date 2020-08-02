@@ -11,6 +11,7 @@ workflows:
           repo: circleci
           region: AWS_REGION
           tag: latest
+          dockerfile: .circleci/Dockerfile
       - aws-ecs/deploy-service-update:
           context: ecr-circleci-context
           requires:
