@@ -1,22 +1,20 @@
 version: 2.1
-
 orbs:
-  python: circleci/python@0.2.1
+  aws-ecr: circleci/aws-ecr@6.1.0
 
 jobs:
-  build-and-test:
-    executor: python/default
+  build-and-push-image:
+    executor:
+      name: aws-ecr/default
     steps:
-      - checkout
-      - python/load-cache
-      - python/install-deps
-      - python/save-cache
-      - run:
-          command: ./manage.py test
-          name: Test
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL
+          repo: "${AWS_RESOURCE_NAME_PREFIX}"
+          region: AWS_REGION
+          tag: "${CIRCLE_SHA1}"
 
 workflows:
-  main:
+  version: 2
+  build-and-push:
     jobs:
-      - build-and-test:
-      context: ecr-circleci-context
+      - build-and-push-image:
