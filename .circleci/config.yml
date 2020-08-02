@@ -7,8 +7,8 @@ workflows:
     jobs:
       - aws-ecr/build_and_push_image:
           context: ecr-circleci-context
-          account-url: "AWS_ACCOUNT_ID.dkr.ecr.AWS_REGION.amazonaws.com"
-          repo: "AWS_RESOURCE_NAME_PREFIX"
+          account-url: AWS_ECR_ACCOUNT_URL
+          repo: AWS_RESOURCE_NAME_PREFIX
           region: AWS_REGION
           tag: "${CIRCLE_SHA1}"
       - aws-ecs/deploy-service-update:
@@ -16,7 +16,7 @@ workflows:
           requires:
             - aws-ecr/build_and_push_image
           aws-region: AWS_REGION
-          family: "AWS_RESOURCE_NAME_PREFIX-task"
-          cluster-name: "AWS_RESOURCE_NAME_PREFIX-cluster"
-          container-image-name-updates: "container=AWS_RESOURCE_NAME_PREFIX-conainer,tag=${CIRCLE_SHA1}"
+          family: "circleci-task"
+          cluster-name: "circleci-cluster"
+          container-image-name-updates: "container=circleci-conainer,tag=${CIRCLE_SHA1}"
 
