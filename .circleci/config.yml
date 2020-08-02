@@ -8,9 +8,9 @@ workflows:
       - aws-ecr/build_and_push_image:
           context: ecr-circleci-context
           account-url: AWS_ECR_ACCOUNT_URL
-          repo: AWS_RESOURCE_NAME_PREFIX
+          repo: "${AWS_RESOURCE_NAME_PREFIX}"
           region: AWS_REGION
-          tag: CIRCLE_SHA1
+          tag: "${CIRCLE_SHA1}"
           # dockerfile: .circleci/Dockerfile
       - aws-ecs/deploy-service-update:
           context: ecr-circleci-context
