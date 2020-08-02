@@ -7,7 +7,7 @@ workflows:
     jobs:
       - aws-ecr/build_and_push_image:
           context: ecr-circleci-context
-          account-url: 909722230373.dkr.ecr.us-east-2.amazonaws.com/circleci
+          account-url: AWS_ECR_ACCOUNT_URL
           repo: circleci
           region: AWS_REGION
           tag: latest
