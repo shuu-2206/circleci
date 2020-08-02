@@ -10,7 +10,7 @@ workflows:
           account-url: AWS_ECR_ACCOUNT_URL
           repo: AWS_RESOURCE_NAME_PREFIX
           region: AWS_REGION
-          tag: "${CIRCLE_SHA1}"
+          tag: CIRCLE_SHA1
       - aws-ecs/deploy-service-update:
           context: ecr-circleci-context
           requires:
@@ -18,5 +18,5 @@ workflows:
           aws-region: AWS_REGION
           family: "circleci-task"
           cluster-name: "circleci-cluster"
-          container-image-name-updates: "container=circleci-conainer,tag=${CIRCLE_SHA1}"
+          container-image-name-updates: "container=circleci-conainer,tag=latest"
 
