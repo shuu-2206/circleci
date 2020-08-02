@@ -10,11 +10,11 @@ workflows:
       account-url: AWS_ECR_ACCOUNT_URL
       repo: 'circleci'
       tag: "${CIRCLE_SHA1}"
-   
+      
     - aws-ecs/deploy-service-update:
       requires:
         - aws-ecr/build-and-push-image
-      family: 'circleci-task'　
-      cluster-name: 'circleci-container'　
-      service-name: 'circleci-survice'　
-      container-image-name-updates: 'container=seeds-test,tag=${CIRCLE_SHA1}'　
+      family: 'circleci-task'
+      cluster-name: 'circleci-cluster'
+      service-name: 'circleci-survice'
+      container-image-name-updates: 'container=circleci-container,tag=${CIRCLE_SHA1}'　
