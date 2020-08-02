@@ -8,9 +8,9 @@ workflows:
       - aws-ecr/build_and_push_image:
           context: ecr-circleci-context
           account-url: AWS_ECR_ACCOUNT_URL
-          repo: circleci
+          repo: circleci-from-git
           region: AWS_REGION
-          # tag: CIRCLE_SHA1
+          tag: latest
           # dockerfile: .circleci/Dockerfile
       - aws-ecs/deploy-service-update:
           context: ecr-circleci-context
@@ -19,5 +19,5 @@ workflows:
           aws-region: AWS_REGION
           family: circleci-task
           cluster-name: circleci-cluster
-          container-image-name-updates: container=circleci-conainer #,tag=CIRCLE_SHA1
+          container-image-name-updates: container=circleci-conainer tag=latest
 
