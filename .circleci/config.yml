@@ -17,7 +17,8 @@ workflows:
           requires:
             - aws-ecr/build_and_push_image
           aws-region: AWS_REGION
-          family: circleci-survice
+          family: circleci-task
           cluster-name: circleci-cluster
-          container-image-name-updates: container=circleci-conainer tag=latesttttttttt
+          service-name: circleci-survice
+          container-image-name-updates: container=circleci-conainer, tag=latesttttttttt
 
